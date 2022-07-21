@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Region</title>
+    <link rel="stylesheet"   th:href="@{/assets/css/bootstrap.css}">
+    <link rel="stylesheet"   th:href="@{/assets/plugins/datTables/datatables.css}">
+</head>
+<body>
+
+<div class="container">
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#regionModal">add Region</button>
+    <table id="regions" class="table table-bordered"></table>
+</div>
+
+
+<div id="regionModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Region Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control" id="regionName" placeholder="Enter region name" required/>
+            </div>
+            <div class="modal-footer">
+                <button id="closeModal" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button id="saveRegion" type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="regionDeleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Region modal</h4>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button id="deleteRegion" type="button" class="btn btn-success" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="regionEditModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Region edit modal</h4>
+            </div>
+            <div class="modal-body">
+                <select class="form-control" id="selectCountry">
+                    <option value='0' selected disabled >Select region</option>
+                </select>
+                <input type="text" class="form-control" id="regionNameEdit" placeholder="Enter region name" required/>
+            </div>
+            <div class="modal-footer">
+                <button id='editR' type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button id="editRegion" type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/assets/js/jQuery.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.js}"></script>
+<script th:src="@{/assets/js/region.js}"></script>
+<script th:src="@{/assets/plugins/datTables/datatables.js}"></script>
+</body>
+</html>
