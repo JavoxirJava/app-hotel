@@ -3,6 +3,7 @@ package uzb.hotel_register.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import uzb.hotel_register.entity.template.AbsNameEntity;
 
 import javax.persistence.Entity;
@@ -11,5 +12,4 @@ import javax.persistence.Entity;
 @Data
 @Entity
 public class Aware extends AbsNameEntity {
-
 }

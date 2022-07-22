@@ -8,19 +8,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResRoom {
-
     private Integer tr;
-
     private Integer id;
-
+    private Integer hotelId;
+    private Integer roomTypeId;
     private Integer roomNumber;
-
-    private String categoryRoomName;
-
-    private Integer roomSiz;
-
+    private Integer roomSize;
     private double priceDay;
-
     private double priceTime;
+
 
 }

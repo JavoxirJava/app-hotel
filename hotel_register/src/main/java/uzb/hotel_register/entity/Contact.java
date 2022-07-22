@@ -1,8 +1,10 @@
 package uzb.hotel_register.entity;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import uzb.hotel_register.entity.template.AbsEntity;
 
 import javax.persistence.Column;
@@ -14,6 +16,8 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Contact extends AbsEntity {
     @ManyToOne(optional = false)
     private District district;

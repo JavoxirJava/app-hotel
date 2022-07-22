@@ -1,7 +1,9 @@
 package uzb.hotel_register.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import uzb.hotel_register.entity.template.AbsNameEntity;
 
 import javax.persistence.*;
@@ -12,7 +14,9 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-public class Hotel extends AbsNameEntity {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Hotel extends AbsNameEntity {//Shxribonu
     @OneToOne
     private Contact contact;
 
@@ -28,14 +32,8 @@ public class Hotel extends AbsNameEntity {
     @Column(nullable = false)
     private Date licenseExpire;
 
-    @ManyToOne
-    private BusinessType businessType;
-
     @OneToMany
     private List<AwareHotel> awareHotels;
-
-    @OneToMany
-    private List<Room> rooms;
 
     private String description;
 }

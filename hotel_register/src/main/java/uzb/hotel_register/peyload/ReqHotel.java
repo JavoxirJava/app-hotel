@@ -13,8 +13,6 @@ public class ReqHotel {
     private String licenseDate;
     private String licenseNumber;
     private String licenseExpire;
-    private Integer businessTypeId;
-    private List<Integer> awareHotelIds;
-    private ReqRoom reqRoom;
+    private ReqAwareHotel reqAwareHotel;
     private String description;
 }

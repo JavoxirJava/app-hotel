@@ -9,5 +9,5 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-public class Region extends AbsNameEntity {
+public class Region extends AbsNameEntity {//Odil aka// data res qilasiz
 }

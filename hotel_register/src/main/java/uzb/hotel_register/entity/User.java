@@ -1,8 +1,10 @@
 package uzb.hotel_register.entity;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import uzb.hotel_register.entity.enums.Gender;
@@ -15,7 +17,9 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity(name = "users")
-public class User extends AbsEntity implements UserDetails {
+@AllArgsConstructor
+@NoArgsConstructor
+public class User extends AbsEntity implements UserDetails {// Shahzod aka, Odil aka va Ozod 2 mazzami👍👍👍😂😂
 
     @Column(nullable = false)
     private String firstName;

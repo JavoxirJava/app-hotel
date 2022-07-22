@@ -1,7 +1,7 @@
 package uzb.hotel_register.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 import uzb.hotel_register.entity.AwareHotel;
 import uzb.hotel_register.peyload.ApiResponse;
 import uzb.hotel_register.peyload.ReqAwareHotel;
@@ -15,17 +15,18 @@ import java.util.List;
 
 @Service
 public class AwareHotelService {
-    @Autowired
-    AwareHotelRepository awareHotelRepository;
-    @Autowired
-    AwareRepository awareRepository;
+    final AwareHotelRepository awareHotelRepository;
+    final AwareRepository awareRepository;
+
+    public AwareHotelService(AwareHotelRepository awareHotelRepository, AwareRepository awareRepository) {
+        this.awareHotelRepository = awareHotelRepository;
+        this.awareRepository = awareRepository;
+    }
 
     public ApiResponse addAwareHotel(ReqAwareHotel reqAwareHotel) {
         if (!awareHotelRepository.existsAwareHotelByLinkEqualsIgnoreCase(reqAwareHotel.getLink())) {
             AwareHotel awareHotel = new AwareHotel();
-            awareHotel.setLink(reqAwareHotel.getLink());
-            awareHotel.setAware(awareRepository.findById(reqAwareHotel.getAwareId()).get());
-            awareHotelRepository.save(awareHotel);
+            addOrEdit(reqAwareHotel, awareHotel);
             return new ApiResponse("Successfully saved", true);
         }
         return new ApiResponse("This link already exist", false);
@@ -33,10 +34,8 @@ public class AwareHotelService {
 
     public ApiResponse editAwareHotel(Integer id, ReqAwareHotel reqAwareHotel) {
         if (!awareHotelRepository.existsAwareHotelByLinkEqualsIgnoreCase(reqAwareHotel.getLink())) {
-            AwareHotel awareHotel = awareHotelRepository.findById(id).get();
-            awareHotel.setLink(reqAwareHotel.getLink());
-            awareHotel.setAware(awareRepository.findById(reqAwareHotel.getAwareId()).get());
-            awareHotelRepository.save(awareHotel);
+            AwareHotel awareHotel = awareHotelRepository.findById(id).orElseThrow(() -> new ResourceAccessException("getAwareHotel"));
+            addOrEdit(reqAwareHotel, awareHotel);
             return new ApiResponse("Successfully edit", true);
         }
         return new ApiResponse("This link already exist", false);
@@ -62,5 +61,11 @@ public class AwareHotelService {
             resAwareHotelList.add(resAwareHotel);
         }
         return resAwareHotelList;
+    }
+
+    public void addOrEdit(ReqAwareHotel reqAwareHotel, AwareHotel awareHotel) {
+        awareHotel.setLink(reqAwareHotel.getLink());
+        awareHotel.setAware(awareRepository.findById(reqAwareHotel.getAwareId()).orElseThrow(() -> new ResourceAccessException("getAware")));
+        awareHotelRepository.save(awareHotel);
     }
 }
